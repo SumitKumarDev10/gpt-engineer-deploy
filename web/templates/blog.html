@@ -1,0 +1,17 @@
+{% include 'includes/header.html' %}
+  <h1>Blog Posts</h1>
+  <div class="row">
+    {% for post in blog_posts %}
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text"><strong>Author: </strong>{{ post.user.username }}</p>
+            <a href="{{ url_for('blog_post_page', post_id=post.id) }}" class="card-link">Continue reading</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% include 'includes/footer.html' %}

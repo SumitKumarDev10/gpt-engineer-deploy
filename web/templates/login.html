@@ -1,0 +1,30 @@
+{% include 'includes/header.html' %}
+
+<h1>Login</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="{{ url_for('login_page') }}">
+        {{ form.csrf_token }}
+        <label for="{{ form.username_or_email.id }}">{{ form.username_or_email.label }}</label>
+        {{ form.username_or_email }}
+        {% for error in form.username_or_email.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <br>
+        <label for="{{ form.password.id }}">{{ form.password.label }}</label>
+        {{ form.password }}
+        {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <br>
+        {{ form.submit }}
+    </form>
+
+{% include 'includes/footer.html' %}
